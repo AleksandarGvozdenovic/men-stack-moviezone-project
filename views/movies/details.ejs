@@ -1,0 +1,27 @@
+<% layout('layouts/main') -%>
+<article class="details">
+  <% if (movie.poster) { %>
+    <img class="poster"
+         src="<%= movie.poster.startsWith('/') ? movie.poster : ('/uploads/' + movie.poster) %>"
+         alt="<%= movie.title %> poster">
+  <% } %>
+  <div>
+    <h1><%= movie.title %></h1>
+    <p><span class="badge"><%= movie.genre %></span></p>
+    <p><%= movie.description %></p>
+    <p class="price">€<%= Number(movie.price).toFixed(2) %></p>
+    <form action="/cart/add/<%= movie._id %>" method="post" class="actions">
+      <input type="number" name="qty" value="1" min="1"/>
+      <button class="primary">Add to cart</button>
+    </form>
+  </div>
+</article>
+
+<% if (currentUser && currentUser.role === 'admin') { %>
+  <hr/>
+  <h2>Admin</h2>
+  <a class="button" href="/movies/admin/<%= movie._id %>/edit">Edit</a>
+  <form action="/movies/admin/<%= movie._id %>/delete" method="post" style="display:inline" onsubmit="return confirm('Delete movie?')">
+    <button class="danger">Delete</button>
+  </form>
+<% } %>

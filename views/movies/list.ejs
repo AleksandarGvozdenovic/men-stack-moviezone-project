@@ -1,0 +1,16 @@
+<% layout('layouts/main') -%>
+<h1>All Movies</h1>
+<div class="grid">
+  <% movies.forEach(m => { %>
+    <article class="card">
+      <a href="/movies/<%= m._id %>">
+        <% if (m.poster) { %>
+          <img class="poster" src="/uploads/<%= m.poster %>" alt="<%= m.title %> poster">
+        <% } %>
+        <h3><%= m.title %></h3>
+      </a>
+      <p class="meta"><strong><%= m.genre %></strong> • <%= m.duration %> min</p>
+      <p class="price">€<%= m.price %></p>
+    </article>
+  <% }) %>
+</div>

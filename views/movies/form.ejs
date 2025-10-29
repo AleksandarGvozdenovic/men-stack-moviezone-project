@@ -1,0 +1,12 @@
+<% layout('layouts/main') -%>
+<h1><%= movie._id ? 'Edit Movie' : 'New Movie' %></h1>
+<form method="post" enctype="multipart/form-data" action="<%= movie._id ? '/movies/admin/' + movie._id : '/movies/admin' %>">
+  <label>Title <input type="text" name="title" value="<%= movie.title || '' %>" required></label>
+  <label>Description <textarea name="description" required><%= movie.description || '' %></textarea></label>
+  <label>Genre <input type="text" name="genre" value="<%= movie.genre || '' %>" required></label>
+  <label>Price (€) <input type="number" step="0.01" name="price" value="<%= movie.price || 0 %>" required></label>
+  <label>Duration (min) <input type="number" name="duration" value="<%= movie.duration || 120 %>"></label>
+  <label>Poster <input type="file" name="poster" accept="image/*"></label>
+  <label><input type="checkbox" name="published" <%= movie.published ? 'checked' : '' %>> Published</label>
+  <button><%= movie._id ? 'Save changes' : 'Create movie' %></button>
+</form>

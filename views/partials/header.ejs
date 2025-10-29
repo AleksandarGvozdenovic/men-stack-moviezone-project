@@ -1,0 +1,18 @@
+<header class="nav">
+  <a class="brand" href="/">🎬 Movie Zone</a>
+  <nav>
+    <a href="/movies">Movies</a>
+    <% if (currentUser) { %>
+      <a href="/cart">My Cart</a>
+      <% if (currentUser.role === 'admin') { %>
+        <a href="/movies/admin/new">Add Movie</a>
+      <% } %>
+      <form action="/auth/logout" method="post" style="display:inline">
+        <button class="link">Logout (<%= currentUser.name %>)</button>
+      </form>
+    <% } else { %>
+      <a href="/auth/login">Login</a>
+      <a href="/auth/register">Register</a>
+    <% } %>
+  </nav>
+</header>

@@ -1,0 +1,30 @@
+<% layout('layouts/main') -%>
+<h1>My Cart</h1>
+<% if (!cart.items.length) { %>
+  <p>Your cart is empty.</p>
+<% } else { %>
+  <table class="table">
+    <thead><tr><th>Movie</th><th>Qty</th><th>Price</th><th>Subtotal</th><th></th></tr></thead>
+    <tbody>
+      <% cart.items.forEach(i => { %>
+        <tr>
+          <td><%= i.title %></td>
+          <td><%= i.qty %></td>
+          <td>€<%= i.price %></td>
+          <td>€<%= (i.price * i.qty).toFixed(2) %></td>
+          <td>
+            <form action="/cart/remove/<%= i.movie %>" method="post">
+              <button class="danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3" style="text-align:right"><strong>Total</strong></td><td colspan="2">€<%= cart.total.toFixed(2) %></td></tr>
+    </tfoot>
+  </table>
+  <form action="/cart/checkout" method="post">
+    <button class="primary">Checkout</button>
+  </form>
+<% } %>

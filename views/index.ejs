@@ -1,0 +1,33 @@
+<% layout('layouts/main') -%>
+<section class="hero">
+  <h1>Welcome to Movie Zone</h1>
+  <form class="filters" method="get" action="/">
+    <input type="text" name="q" placeholder="Search title..." value="<%= q %>"/>
+    <input type="text" name="genre" placeholder="Genre" value="<%= genre %>"/>
+    <input type="number" name="min" placeholder="Min price" value="<%= min %>"/>
+    <input type="number" name="max" placeholder="Max price" value="<%= max %>"/>
+    <button>Filter</button>
+  </form>
+</section>
+
+<section class="grid index">
+  <% if (!movies.length) { %>
+    <p>No movies found.</p>
+  <% } %>
+  <% movies.forEach(m => { %>
+    <article class="card">
+      <a href="/movies/<%= m._id %>">
+        <% if (m.poster) { %>
+          <img class="poster" src="/uploads/<%= m.poster %>" alt="<%= m.title %> poster">
+        <% } %>
+        <h3><%= m.title %></h3>
+      </a>
+      <p class="meta"><strong><%= m.genre %></strong> • <%= m.duration %> min</p>
+      <p class="price">€<%= m.price %></p>
+      <form action="/cart/add/<%= m._id %>" method="post">
+        <input type="number" name="qty" value="1" min="1"/>
+        <button class="primary">Add to cart</button>
+      </form>
+    </article>
+  <% }) %>
+</section>
