@@ -65,7 +65,7 @@ It supports authentication, roles (admin/user), movie catalog with images, searc
   - “Few left” when `seatsAvailable <= 5`.
   - “Sold Out” badge on Home grid and Details for that screening.
 
-### 4) (Optional) Extras
+### 4)Extras
 - **Order History:** `/orders` page showing past purchases.
 - **Refund/Cancel Window:** allow cancel until X hours before showtime.
 - **Dynamic Pricing:** different price by auditorium or showtime (matinee vs. evening).
