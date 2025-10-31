@@ -8,7 +8,7 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/moviezone'
   try {
     await mongoose.connect(MONGO_URI);
 
-    // email obavezno, ime opcionalno
+  
     let email = (process.argv[2] || '').toLowerCase().trim();
     const nameArg = (process.argv.slice(3).join(' ') || '').trim();
 
@@ -18,8 +18,7 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/moviezone'
     }
 
     const update = { role: 'admin' };
-    if (nameArg) update.name = nameArg; // npr. "Aleksandar"
-
+    if (nameArg) update.name = nameArg; 
     const user = await User.findOneAndUpdate(
       { email },
       { $set: update },
