@@ -1,11 +1,11 @@
-// scripts/seedTop15.js
+
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Movie = require('../models/Movie');
 
 const MONGO_URI = process.env.MONGO_URI;
 
-// 🔝 Top 15 movies of all time (posters must exist in /uploads with the given filenames)
+
 const data = [
   {
     title: "The Shawshank Redemption",
@@ -165,7 +165,7 @@ const data = [
     await mongoose.connect(MONGO_URI);
     console.log('✅ Connected to Mongo');
 
-    // Clear to avoid duplicates during development
+
     await Movie.deleteMany({});
     console.log('🧹 Cleared movies collection');
 
