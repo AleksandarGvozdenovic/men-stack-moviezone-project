@@ -1,9 +1,8 @@
 # 🎬 Movie Zone (MEN Stack)
-
 Small cinema ticketing app built with **MongoDB + Express + Node** and **EJS** views.  
 It supports authentication, roles (admin/user), movie catalog with images, search & filters, session cart, and simple checkout (orders).
 
----
+## https://movie-zone-ticketing-app-ca4708383899.herokuapp.com/
 
 ## ✨ Features
 
