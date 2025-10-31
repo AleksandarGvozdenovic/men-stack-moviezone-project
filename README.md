@@ -32,7 +32,7 @@ It supports authentication, roles (admin/user), movie catalog with images, searc
 **Goal:** sell tickets per *screening* instead of per movie.
 
 - **Data Model (new):**
-  - `Screening { movie, date (YYYY-MM-DD), time (HH:mm), auditorium, seatsTotal, seatsAvailable, seatsTaken[] }`
+- Screening { movie, date (YYYY-MM-DD), time   (HH:mm), auditorium, seatsTotal, seatsAvailable, seatsTaken[] }
 - **UI (Details page):**
   - Show a list of upcoming days/times; user must pick a screening before adding to cart.
 - **Behavior:**

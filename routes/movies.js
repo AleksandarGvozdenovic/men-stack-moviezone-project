@@ -4,10 +4,10 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 
-const { ensureAdmin } = require('../middleware/auth'); // prilagodi putanju ako je drugačija
+const { ensureAdmin } = require('../middleware/auth'); 
 const movies = require('../controllers/moviesController');
 
-// Multer (uploads/)
+//===============Multer (uploads/)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, path.join(__dirname, '..', 'uploads')),
   filename: (req, file, cb) => {
@@ -18,18 +18,18 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  limits: { fileSize: 5 * 1024 * 1024 }, 
   fileFilter: (req, file, cb) => {
     const ok = ['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype);
     cb(ok ? null : new Error('Only JPG/PNG/WEBP images allowed'), ok);
   }
 });
 
-// Public
+//==================Public======================
 router.get('/', movies.list);
 router.get('/:id', movies.details);
 
-// Admin
+//=====================Admin==================
 router.get('/admin/new', ensureAdmin, movies.renderNew);
 router.post('/admin', ensureAdmin, upload.single('poster'), movies.create);
 router.get('/admin/:id/edit', ensureAdmin, movies.renderEdit);
